@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d82e68a29c1bc7350e96093bf531248",
+    "content-hash": "bf126dc08146082376fd3168ea2abe31",
     "packages": [
         {
             "name": "brick/math",
@@ -5740,6 +5740,69 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "xurape/modulify",
+            "version": "0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Xurape/modulify.git",
+                "reference": "c848cd1171f5fa43fbd053f57c1ce433ca8d3905"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Xurape/modulify/zipball/c848cd1171f5fa43fbd053f57c1ce433ca8d3905",
+                "reference": "c848cd1171f5fa43fbd053f57c1ce433ca8d3905",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^11.13",
+                "illuminate/support": "^11.13",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.16",
+                "orchestra/testbench": "^9.1",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-laravel": "^2.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Xurape\\Modulify\\Providers\\ModulifyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Xurape\\Modulify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "João Ferreira",
+                    "email": "j.pedro.ferreira@ipvc.pt"
+                }
+            ],
+            "description": "A simple laravel 11.x module manager.",
+            "keywords": [
+                "laravel",
+                "laravel 11",
+                "laravel 11.x",
+                "manager",
+                "module",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/Xurape/modulify/issues",
+                "source": "https://github.com/Xurape/modulify/tree/0.6.1"
+            },
+            "time": "2024-06-30T16:10:36+00:00"
         }
     ],
     "packages-dev": [
