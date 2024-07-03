@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Modules\EnvironmentMetrics\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class EnvironmentMetricsServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
+        //
+    }
+
+    public function boot()
+    {
+        $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'dummy');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+    }
+}
