@@ -16,6 +16,8 @@ return new class extends Migration
             $table->float('ph');
             $table->float('chlorine');
             $table->float('alkalinity');
+            $table->float('turbidity');
+            $table->float('temperature');
             $table->date('date');
             $table->timestamps();
         });

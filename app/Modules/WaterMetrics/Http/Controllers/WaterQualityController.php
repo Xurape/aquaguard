@@ -30,4 +30,12 @@ class WaterQualityController extends Controller
             'message' => '100'
         ]);
     }
+
+    public function turbidity(Request $request)
+    {
+        return response()->json([
+            'status' => '200',
+            'message' => '0.1'
+        ]);
+    }
 }

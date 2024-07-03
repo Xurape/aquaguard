@@ -16,4 +16,6 @@ Route::prefix('water')->group(function () {
     Route::get('chlorine', [WaterQualityController::class, 'chlorine']);
 
     Route::get('alkalinity', [WaterQualityController::class, 'alkalinity']);
+
+    Route::get('turbidity', [WaterQualityController::class, 'turbidity']);
 })->middleware('api');
