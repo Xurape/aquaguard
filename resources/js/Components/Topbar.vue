@@ -3,7 +3,7 @@
         class="w-full py-4 flex justify-between items-center bg-zinc-950 text-white px-7"
     >
         <div class="flex gap-4 items-center">
-            <svg
+            <svg v-if="isDay"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -25,6 +25,7 @@
                 <path d="m6.34 17.66-1.41 1.41" />
                 <path d="m19.07 4.93-1.41 1.41" />
             </svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon w-5 stroke-blue-400"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
             <span v-if="isLoading.temperature">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,6 +94,7 @@ const isLoading = ref({
     time: true
 });
 
+const isDay = ref("");
 const temperature = ref("");
 const date = ref("");
 const time = ref("");
@@ -100,6 +102,7 @@ const time = ref("");
 async function getData() {
     await axios.get("/api/environment/temperature").then((response) => {
         temperature.value = response.data.temperature;
+        isDay.value = response.data.isDay;
         isLoading.value.temperature = false;
     });
 

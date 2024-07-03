@@ -43,6 +43,7 @@ class EnvironmentMetricsController extends Controller
 
         return response()->json([
             'temperature' => $data->temperature_2m,
+            'is_day' => $data->is_day,
         ]);
     }
 
