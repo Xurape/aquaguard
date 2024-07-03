@@ -10,5 +10,8 @@ import Topbar from '@/Components/Topbar.vue';
     
     <div class="flex flex-col w-screen h-screen bg-[#F3F4F6]">
         <Topbar />
+        <!-- TODO: Metrics -->
+        <!-- TODO: Graphs -->
+        <!-- TODO: Assistant -->
     </div>
 </template>
