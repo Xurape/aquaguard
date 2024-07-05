@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card {
+    @apply bg-[#263654] shadow-md rounded-2xl p-4;
+}
+
+.card .card-title {
+    @apply text-white text-base font-normal flex items-center gap-3;
+}
+
+.card .card-title svg {
+    @apply w-5 h-5;
+}
+
+.card .card-content {
+    @apply text-white text-base flex flex-row gap-3; 
+}
+
+.button {
+    @apply bg-[#365993] rounded-xl text-white px-4 py-2;
+}

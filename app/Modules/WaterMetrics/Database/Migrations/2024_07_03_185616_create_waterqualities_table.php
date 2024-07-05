@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('waterqualities', function (Blueprint $table) {
+        Schema::create('water_qualities', function (Blueprint $table) {
             $table->id();
             $table->float('ph');
             $table->float('chlorine');

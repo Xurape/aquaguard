@@ -12,6 +12,6 @@ Route::prefix('environment')->group(function () {
     });
 
     Route::get('temperature', [EnvironmentMetricsController::class, 'temperature']);
-
     Route::get('date', [EnvironmentMetricsController::class, 'date']);
+    Route::get('all', [EnvironmentMetricsController::class, 'all']);
 })->middleware('api');

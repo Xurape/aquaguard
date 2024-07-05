@@ -10,12 +10,6 @@ Route::prefix('water')->group(function () {
             'message' => 'No action specified'
         ]);
     });
-
-    Route::get('ph', [WaterQualityController::class, 'ph']);
-
-    Route::get('chlorine', [WaterQualityController::class, 'chlorine']);
-
-    Route::get('alkalinity', [WaterQualityController::class, 'alkalinity']);
-
-    Route::get('turbidity', [WaterQualityController::class, 'turbidity']);
+    Route::get('all', [WaterQualityController::class, 'all']);
+    Route::post('register', [WaterQualityController::class, 'registerValues']);
 })->middleware('api');

@@ -7,33 +7,39 @@ use Illuminate\Http\Request;
 
 class EnvironmentMetricsController extends Controller
 {
-    protected function getData($lat, $long) {
-        $url = "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&current=temperature_2m,is_day,precipitation,wind_speed_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,wind_speed_10m,wind_gusts_10m&forecast_days=1";
+    public $lat;
+    public $long;
+    private $data;
+
+    public function __construct() {
+        $this->lat = env('APP_LATITUDE');
+        $this->long = env('APP_LONGITUDE');
+    }
+
+    protected function getData() {
+        $lat = $this->lat;
+        $long = $this->long;
+
+        $url = "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&current=temperature_2m,is_day,precipitation,wind_speed_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,wind_speed_10m,wind_gusts_10m&forecast_days=1&daily=sunrise,sunset&timezone=Europe%2FLondon";
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($ch);
         curl_close($ch);
+
         return json_decode($output);
     }
 
     public function temperature()
     {
-        $lat = env('APP_LATITUDE');
-        $long = env('APP_LONGITUDE');
-
-        $data = $this->getData($lat, $long);
+        $this->data = $this->getData();
 
         return response()->json([
-            'temperature' => $data->current->temperature_2m,
-            'is_day' => $data->current->is_day,
-            'precipitation' => $data->current->precipitation,
+            'temperature' => $this->data->current->temperature_2m,
+            'is_day' => $this->data->current->is_day,
+            'precipitation' => $this->data->current->precipitation,
         ]);
-    }
-
-    public function humidity()
-    {
-        //
     }
 
     public function date()
@@ -48,6 +54,23 @@ class EnvironmentMetricsController extends Controller
     
         return response()->json([
             'date' => "$dayOfWeek, $day de $month"
+        ]);
+    }
+
+    public function all() {
+        if($this->data == null) {
+            $this->data = $this->getData();
+        }
+
+        $sunrise = substr($this->data->daily->sunrise[0], 11, 5);
+        $sunset = substr($this->data->daily->sunset[0], 11, 5);
+
+        return response()->json([
+            'temperature' => $this->data->current->temperature_2m,
+            'wind_speed' => $this->data->current->wind_speed_10m,
+            'precipitation' => $this->data->current->precipitation,
+            'sunrise' => $sunrise,
+            'sunset' => $sunset,
         ]);
     }
 }

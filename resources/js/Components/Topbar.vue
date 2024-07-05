@@ -1,9 +1,10 @@
 <template>
     <div
-        class="w-full py-4 flex justify-between items-center bg-zinc-950 text-white px-7"
+        class="w-full py-4 flex justify-between items-center bg-[#263654] text-white px-7"
     >
         <div class="flex gap-4 items-center">
-            <svg v-if="isDay"
+            <svg v-if="precipiation > 0.7" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-rain w-5 stroke-blue-400"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/></svg>
+            <svg v-else-if="isDay"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -96,13 +97,15 @@ const isLoading = ref({
 
 const isDay = ref("");
 const temperature = ref("");
+const precipiation = ref("");
 const date = ref("");
 const time = ref("");
 
 async function getData() {
     await axios.get("/api/environment/temperature").then((response) => {
         temperature.value = response.data.temperature;
-        isDay.value = response.data.isDay;
+        isDay.value = response.data.is_day;
+        precipiation.value = response.data.precipiation;
         isLoading.value.temperature = false;
     });
 
@@ -118,9 +121,5 @@ async function getData() {
 
 onMounted(() => {
     getData();
-
-    setInterval(() => {
-        getData();
-    }, 1000);
 });
 </script>
